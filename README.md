@@ -1,0 +1,5 @@
+A simple HTTP server. GET requests to /greet/[somename] will greet the user by whaterver is typed after /greet/.
+
+GET Requests to /time will give the user the curent time in several formats.
+
+POST requests to /greet will greet the user IF the POST sends JSON in  the form '{"name":"[somename]"}' where [somename] is a string.
