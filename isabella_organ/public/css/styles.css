@@ -1,0 +1,48 @@
+/* Table of Contents
+Body
+Text
+*/
+
+body {
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
+	background-color: #00bfff;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+a:link {
+	color: #14c7de;
+	text-decoration: none;}
+a:visited {
+	color: #01B0f0;}
+a:hover {
+	color: #AEEE00;
+	text-decoration: underline;
+}
+
+h1 {
+	text-align: center;
+	letter-spacing: 15px;
+  	font-size: 56px;
+  	color: #000000;
+}
+
+p { 
+	height: 75%;
+	width: 75%;
+	margin-left: 20px;
+	padding-left: 20px;
+	text-align: left;
+	}
+
+
+
+
+
+
+
+
+
+
