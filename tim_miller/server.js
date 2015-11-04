@@ -1,7 +1,6 @@
 var http = require('http');
 var fs = require('fs');
 var ReadStream = require('stream').Readable;
-var greet = require(__dirname + '/greet.js');
 var lodash = require('lodash');
 
 var server = module.exports = http.createServer(function(req, res) {
@@ -46,20 +45,14 @@ var server = module.exports = http.createServer(function(req, res) {
     resData.data = "<h1>HELLO " + req.url.split('/')[2] + "</h1>";
   }
 
-
-  if (req.url === '/awesome' && req.method === 'GET') {
-    resData.status = 200;
-    resData.contentType = 'application/json';
-    resData.data = JSON.stringify({hello: 'world'});
-  }
-
-  if(req.method !== 'POST') {
+  if (req.method !== 'POST') {
     res.writeHead(resData.status || 404, {
       'Content-Type': resData.contentType || 'text/plain'
     });
     res.write(resData.data || 'not found');
     res.end();
   }
+
 });
 
 server.listen(3000, function() {
