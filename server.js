@@ -14,11 +14,12 @@ var server = http.createServer(function(request, response) {
       'Content-Type': 'text/plain'
     });
 
-    response.write(time + ' ' + date);
+    response.write(time + ' ' + localeDate);
     return response.end();
   }
 
   if (urlPath[1] === 'greet' && request.method === 'GET') {
+
     response.writeHead(200, {
       'Content-Type': 'text/plain'
     });
@@ -26,6 +27,7 @@ var server = http.createServer(function(request, response) {
     return response.end();
 
   } else if (request.method === 'POST') {
+
       request.on('data', function(err, data) {
         var parseData = JSON.parse(data);
 
