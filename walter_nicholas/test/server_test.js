@@ -5,6 +5,8 @@ var expect = chai.expect;
 var fs = require('fs');
 require(__dirname + '/../server');
 var indexFileString;
+var date = new Date();
+var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
 describe('our server', function() {
 
@@ -20,7 +22,7 @@ describe('our server', function() {
         expect(res).to.have.status(200);
         expect(res.text).to.eql(indexFileString);
         done();
-      })
+      });
   });
 
   it('should greet a person', function(done) {
@@ -31,7 +33,7 @@ describe('our server', function() {
         expect(res).to.have.status(200);
         expect(res.text).to.eql('Hello anystring!');
         done();
-      })
+      });
   });
 
   it('should respond to a post request', function(done) {
@@ -43,7 +45,18 @@ describe('our server', function() {
         expect(res).to.have.status(200);
         expect(res.text).to.eql('Hello anystring');
         done();
-      })
+      });
+  });
+
+  it('should tell the time', function(done) {
+    chai.request('localhost:3000')
+      .get('/time')
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res).to.have.status(200);
+        expect(res.text).to.eql(time);
+        done();
+      });
   });
 
 });
