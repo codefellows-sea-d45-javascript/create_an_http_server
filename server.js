@@ -9,15 +9,16 @@ var localeDate = date.toLocaleDateString();
 var server = http.createServer(function(request, response) {
 
   var urlPath = request.url.split('/');
+  var url = request.url;
 
-  if (request.url === '/') {
-    fs.readFile((__dirname + '/../lib/index.html'), function(err, data) {
-        response.writeHead(200, {
-          'Content-Type': 'text/html'
-        });
-
-        response.end(data);
+  if (url === '/') {
+    var htmlData = fs.readFileSync('./lib/index.html').toString();
+    response.writeHead(200, {
+      'Content-Type': 'text/html'
     });
+    response.write(htmlData);
+    return response.end();
+
 
   } else if (urlPath[1] === 'time') {
     response.writeHead(200, {
@@ -36,27 +37,27 @@ var server = http.createServer(function(request, response) {
     return response.end();
 
   }
-      if (request.method === 'POST') {
+    if (request.method === 'POST') {
 
-      request.on('data', function(err, data) {
-        var parseData = JSON.parse(data);
+    request.on('data', function(err, data) {
+      var parseData = JSON.parse(data);
 
-        response.writeHead(200, {
-          'Content-Type': 'text/plain'
-        });
-        response.write(JSON.stringify({name: 'Comment allez-vous ' + parseData.name}));
-        return response.end();
+      response.writeHead(200, {
+        'Content-Type': 'text/plain'
+      });
+      response.write(JSON.stringify({name: 'Comment allez-vous ' + parseData.name}));
+      return response.end();
+    });
+
+    } else {
+
+      response.writeHead(404, {
+        'Content-Type': 'text/plain'
       });
 
-      } else {
-
-        response.writeHead(404, {
-          'Content-Type': 'text/plain'
-        });
-
-        response.write('Sorry, page not found');
-        return response.end();
-      }
+      response.write('Sorry, page not found');
+      return response.end();
+    }
 });
 
 server.listen(8000, function() {
