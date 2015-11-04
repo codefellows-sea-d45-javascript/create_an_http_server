@@ -1,0 +1,16 @@
+{
+  "name": "rick_http_server",
+  "version": "0.1.0",
+  "description": "simple http server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rick Patci",
+  "license": "MIT",
+  "devDependencies": {
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.12.0"
+  }
+}
