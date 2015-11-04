@@ -3,6 +3,7 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
 require(__dirname + '/../server.js');
+var fs = require('fs');
 
 describe('a GET request to to "/"', function(){
 
@@ -24,6 +25,8 @@ describe('a GET request to greet/name', function() {
       chai.request('http://localhost:3000')
         .get('/greet/Cornelius')
         .end(function(err, res){
+          expect(res.text).to.include('Cornelius');
+          expect(res.text).to.not.include('{{Names}}');
           expect(res).to.have.status(200);
           done();
         });
@@ -35,8 +38,10 @@ describe('a POST request to /greet', function(){
 
   it('should be able to take a name in JSON format', function(done){
       chai.request('http://localhost:3000')
-        .post('/greet/Cornelius')
-        .end(function(err, res){
+        .post('/greet')
+        .send({ name: 'Cornelius' })
+        .end(function(res){
+          expect(res.text).to.equal('{"name":"Cornelius"}');
           expect(res).to.have.status(200);
           done();
         });
