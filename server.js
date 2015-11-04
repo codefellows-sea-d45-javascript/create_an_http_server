@@ -12,7 +12,7 @@ var server = http.createServer(function(request, response) {
   var url = request.url;
 
   if (url === '/') {
-    var htmlData = fs.readFileSync('./lib/index.html').toString();
+    var htmlData = fs.readFileSync('./public/index.html').toString();
     response.writeHead(200, {
       'Content-Type': 'text/html'
     });

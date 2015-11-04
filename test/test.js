@@ -38,7 +38,7 @@ describe('greet POST', function() {
       .post('/greet')
       .send({name: 'POST'})
       .end(function(error, response) {
-        expect(response).to.equal(200);
+        expect(response).to.have.status(200);
         expect(response.name).to.equal('Comment allez-vous POST');
       });
     });
