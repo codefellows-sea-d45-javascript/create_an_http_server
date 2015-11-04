@@ -19,7 +19,7 @@ describe('our server', function(){
       .get('/time')
       .end(function(err, res){
         expect(err).to.be.null;
-        expect(res.text.substring(0,3)).to.eql('The');
+        expect(res.text).to.eql('The date/time of the previous GET request: ' + Date());
         done();
       });
   });
