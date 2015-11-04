@@ -14,3 +14,12 @@ function time(request, response) {
   response.write(time);
   response.end();
 }
+
+// var test = function(string) {
+//   console.log('logging from ' + string);
+// };
+//
+// test("requesthandler");
+
+exports.greet = greet;
+exports.time = time;
