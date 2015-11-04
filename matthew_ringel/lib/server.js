@@ -1,9 +1,18 @@
 var http = require('http');
 var url = require('url');
+var fs = require('fs');
 
 var requestHandler = require('./requesthandler');
 
 var server = http.createServer(function(request, response) {
+
+  if (request.url === '/') {
+    response.writeHead(200, {"Content-Type": "text/html"});
+    data = fs.readFileSync(__dirname + '/../public/index.html');
+    response.write(data || 'not found');
+    response.end();
+  }
+
   if (request.url === '/time') {
     requestHandler.time(request, response);
   }

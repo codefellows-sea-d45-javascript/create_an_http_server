@@ -11,23 +11,23 @@ function greet(request, response) {
 
 function time(request, response) {
   var date = new Date();
-  var time = date.toUTCString();
+  var returnTime = date.toUTCString();
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write(time);
+  response.write(returnTime);
   response.end();
 }
 
 function greetJSON(request, response) {
-  console.log('handling POST greet with JSON');
+  // console.log('handling POST greet with JSON');
   var postData = '';
   request.on('data', function (data) {
     postData += data;
   });
   request.on('end', function() {
     var postName = JSON.parse(postData);
-    console.log('Received JSON: ');
-    console.dir(postName);
-    console.log(postName.name);
+    // console.log('Received JSON: ');
+    // console.dir(postName);
+    // console.log(postName.name);
 
     var name = postName.name;
     var body = "hello " + name.toString();
