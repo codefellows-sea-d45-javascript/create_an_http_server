@@ -38,7 +38,8 @@ var server = http.createServer(function(request, response){
 			response.end(); 
 		}
 
-		if(arr[1] === 'greet' && arr.length === 3 && request.method === 'GET'){
+		if(arr[1] === 'greet' && request.method === 'GET'){
+			if(arr.length === 3){
 				responseData.status = 200;
 	  		responseData.contentType = 'text/html';
 	  		responseData.data = 'Greetings, ' + arr[2];
@@ -48,7 +49,17 @@ var server = http.createServer(function(request, response){
 				});
 
 				response.write(responseData.data || 'not found');
-				response.end(); 
+				response.end();
+			} else{
+					responseData.data = 'Hello anon';
+
+		  		response.writeHead(responseData.status || '404', {
+					'Content-Type': responseData.contentType || 'text/plain'
+				});
+
+				response.write(responseData.data || 'not found');
+				response.end();
+			} 
 		}
 
 		if(arr[1] === 'greet' && request.method === 'POST'){
