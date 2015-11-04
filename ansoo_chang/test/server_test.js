@@ -20,7 +20,6 @@ describe('http server', function() {
         expect(res).to.have.status(200);
         expect(res.text).to.eql(this.indexFileString);
         done();
-      }.bind(this)
-      });
-	});
-})
+      }.bind(this));
+  });
+});
