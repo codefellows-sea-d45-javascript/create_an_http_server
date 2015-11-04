@@ -5,7 +5,7 @@ var url = require('url');
 var formidable = require('formidable');
 var form = new formidable.IncomingForm();
 
-var handle = exports = module.exports = (function() {
+var handle = module.exports = exports = (function() {
   return {
     index: function(req, res) {
       fs.readFile(__dirname + '/../public/index.html', function(err, data) {
