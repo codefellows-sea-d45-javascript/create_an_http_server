@@ -33,7 +33,6 @@ var server = http.createServer(function(req, res){
       'Content-Type' : 'text/plain'
     });
     res.write("Well hello there, " + name);
-    debugger
     return res.end();
   }
 
