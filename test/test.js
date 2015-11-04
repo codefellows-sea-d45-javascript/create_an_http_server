@@ -2,6 +2,7 @@ var chai = require('chai')
 var chaiHTTP = require('chai-http');
 chai.use(chaiHTTP);
 var expect = chai.expect;
+require(__dirname + '/../http_server');
 
 describe('our server', function(){
   it('should be able to get an index', function(done){
@@ -18,7 +19,7 @@ describe('our server', function(){
       .get('/time')
       .end(function(err, res){
         expect(err).to.be.null;
-        expect(res).to.have.data(date());
+        expect(res.text.substring(0,3)).to.eql('The');
         done();
       });
   });
