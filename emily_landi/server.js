@@ -8,7 +8,7 @@ var server = http.createServer(function(req, res) {
   //index *can't get css pulled in
   if (req.url === '/' && req.method === 'GET') {
     res.writeHead(200, {
-      'Content-Type': 'text/html' || 'text/css'
+      'Content-Type': 'text/html'
     });
     res.end(fs.readFileSync(__dirname + '/public/index.html'));
     // res.end(fs.readFileSync(__dirname + '/public/style.css'));
@@ -28,7 +28,7 @@ var server = http.createServer(function(req, res) {
       'Content-Type': 'application/json'
     });
     req.on('data', function(data) {
-      var body = JSON.parse(data.toString('utf-8'));
+      var body = JSON.parse(data.toString());
       res.write(JSON.stringify(body));
       res.end();
     });
