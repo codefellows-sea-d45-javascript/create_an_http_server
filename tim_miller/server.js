@@ -21,7 +21,7 @@ var server = module.exports = http.createServer(function(req, res) {
   if (req.url === '/greet' && req.method === 'POST') {
     resData.status = 200;
     req.on('data', function(data) {
-      resData.data = data;
+      resData.data += data;
       resData.data = JSON.parse(resData.data);
       if(resData.data.length > 1e7) {
         res.writeHead(413, 'Request Entity Too Large', {'Content-Type': 'text/html'});
