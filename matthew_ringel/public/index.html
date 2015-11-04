@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vanilla HTTP Server of Awesome</title>
+</head>
+<body>
+  <h1>Routes</h1>
+    <ul>
+      <li>/time</li>
+        <ul>
+          <li>returns the system time of the server in GMT</li>
+        </ul>
+      <li>/greet/[name]</li>
+        <ul>
+          <li>returns a greeting to [name]</li>
+        </ul>
+      <li>POST to /greet</li>
+        <ul>
+          <li>Expects a POST request to /greet sending JSON formatted as
+            {name: [name]} where [name] is a string</li>
+          <li>returns a greeting to [name]</li>
+        </ul>
+    </ul>
+</body>
+</html>
