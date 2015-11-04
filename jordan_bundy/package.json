@@ -1,0 +1,23 @@
+{
+  "name": "http_server_assignment",
+  "version": "0.1.0",
+  "description": "Assignment to create a vanilla http server",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dabellator/create_an_http_server.git"
+  },
+  "author": "Jordan Bundy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dabellator/create_an_http_server/issues"
+  },
+  "homepage": "https://github.com/dabellator/create_an_http_server#readme",
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}
