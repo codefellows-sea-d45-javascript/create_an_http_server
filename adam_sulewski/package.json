@@ -1,0 +1,24 @@
+{
+  "name": "http-server",
+  "version": "0.1.0",
+  "description": "a simple http-server using vanilla js",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-http": "^1.0.0",
+    "gulp-jshint": "^1.12.0",
+    "gulp-mocha": "^2.1.3"
+  },
+  "dependencies": {
+    "formidable": "^1.0.17"
+  }
+}
