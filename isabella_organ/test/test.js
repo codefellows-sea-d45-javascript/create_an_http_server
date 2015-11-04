@@ -3,7 +3,7 @@ var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var expect = chai.expect;
 var fs = require('fs');
-require(__dirname = '/../server.js');
+require(__dirname + '/../http_server.js');
 
 describe('our server', function() {
 	before(function() {
@@ -18,9 +18,8 @@ describe('our server', function() {
 				debugger;
 				expect(err).to.eql(null);
 				expect(res).to.have.status(200);
-				expect(res.test).to.eql(this.indexFileString);
+				expect(res.text).to.eql(this.indexFileString);
 				done();
 			}.bind(this));
 	});
-
 });
