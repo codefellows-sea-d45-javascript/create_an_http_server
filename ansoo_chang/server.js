@@ -33,10 +33,10 @@ var server = http.createServer(function(req, res) {
   }
 
   // post request to /greet that takes the name in JSON format
-  if (req.url === '/greet' && req.method === 'POST') {
+  if (req.url === '/greet/' + name && req.method === 'POST') {
     resData.status = 200;
     resData.contentType = 'application/json';
-    resData.data = JSON.stringify({Hello: 'world'});
+    resData.data = JSON.stringify({Hello: name});
   }
 
   res.writeHead(resData.status || 400, {
