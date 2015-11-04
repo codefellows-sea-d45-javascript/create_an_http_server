@@ -9,10 +9,6 @@ describe('our server', function() {
 
   before(function() {
     this.indexFileString = fs.readFileSync(__dirname + '/../public/index.html').toString();
-    chai.request('localhost:3000')
-      .post('/greet')
-      .field('undefinedfirstName', 'test')
-      .field('lastName', 'test');
   });
 
   it('should be able to get an index', function(done) {
@@ -38,26 +34,16 @@ describe('our server', function() {
       });
   });
 
-  it('should respond to /greet/name with the name you send it', function(done) {
+  it('should respond to /greet/* with the name you send it', function(done) {
     chai.request('localhost:3000')
-      .get('/greet/name')
+      .get('/greet/test')
       .end(function(err, res) {
-        expect(res).to.eql(null);
+        expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.text).to.eql('test');
+        expect(res.text).to.eql('<h1>HELLO test</h1>');
         done();
       });
   });
 
-  it('the root page should return all possible routes', function(done) {
-    chai.request('localhost:3000')
-      .post('/root')
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(200);
-        expect(res.text).to.eql(['/', '/time', '/greet', '/greet/name', '/root']);
-        done();
-      });
-  });
 });
 
