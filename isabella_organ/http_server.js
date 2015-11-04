@@ -6,7 +6,7 @@ var server = http.createServer(function(req, res, err) {
 
 	var resData = {};
 
-	if (req.url === '/public/index.html' && req.method === 'GET') {
+	if (req.url === './' && req.method === 'GET') {
 		fs.readfile('./public/index.html', function(err, data) {
 			if (err) return console.log(err);
 		});
