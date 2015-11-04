@@ -28,13 +28,13 @@ gulp.task('jshint:app', function() {
 	.pipe(jshint.reporter('default'));
 });
 
-gulp.task('mochatest', function () {
+gulp.task('mocha', function () {
 	return gulp.src('test/*.js')
 	.pipe(mocha({reporter: 'nyan'}));
 });
 
 gulp.task('jshint', ['jshint:test', 'jshint:app']);
-gulp.task('default', ['jshint', 'mochatest']);
+gulp.task('default', ['jshint', 'mocha']);
 
 
 
