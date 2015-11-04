@@ -1,10 +1,19 @@
 var http = require('http');
+var url = require('url');
+
 var requestHandler = require('./requesthandler');
-// test("server.js");
 
 var server = http.createServer(function(request, response) {
   if (request.url === '/time') {
     requestHandler.time(request, response);
+  }
+  if (url.parse(request.url).pathname.split('/').length === 3 &&
+    url.parse(request.url).pathname.split('/')[1] === 'greet' &&
+    request.method === 'GET') {
+      requestHandler.greet(request, response);
+    }
+  if (request.method === 'POST' && request.url === '/greet') {
+    requestHandler.greetJSON(request, response);
   }
 });
 
