@@ -8,8 +8,10 @@ chai.use(chaiHttp);
 require(__dirname + '/../lib/http-server.js');
 
 describe('this server', function(){
+
   before(function(){
     this.indexFileString = fs.readFileSync(__dirname + '/../public/index.html').toString();
+
   });
 
   it('should respond to root level requests by serving index.html', function(done){
