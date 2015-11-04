@@ -1,0 +1,11 @@
+{
+  "name": "kenji_crosland_vanilla_http",
+  "version": "1.0.0",
+  "description": "A vanilla http server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kenji Crosland",
+  "license": "MIT"
+}
