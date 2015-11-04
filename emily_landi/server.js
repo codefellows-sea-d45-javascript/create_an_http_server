@@ -5,13 +5,21 @@ var GetTime = require(__dirname + '/public/time');
 var SayHello = require(__dirname + '/public/greet');
 
 var server = http.createServer(function(req, res) {
-  //index *can't get css pulled in
+  //index.html
   if (req.url === '/' && req.method === 'GET') {
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    res.end(fs.readFileSync(__dirname + '/public/index.html'));
-    // res.end(fs.readFileSync(__dirname + '/public/style.css'));
+    res.write(fs.readFileSync(__dirname + '/public/index.html'));
+    return res.end();
+  }
+  //style.css
+  else if (req.url === '/style.css') {
+    res.writeHead(200, {
+      'Content-Type': 'text/css'
+    });
+    res.write(fs.readFileSync(__dirname + '/public/style.css'));
+    return res.end();
   }
   //greet
   else if (req.url === '/greet' && req.method === 'GET') {
