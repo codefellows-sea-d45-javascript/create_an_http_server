@@ -1,5 +1,3 @@
-'use strict';
-
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
@@ -12,25 +10,26 @@ function sendResponse(response, resData) {
   response.end();
 }
 
-function writeObject (request) {
-  var resData = {};
-  resData.status = 200;
-  resData.contentType = 'application/json';
-  resData.data = JSON.stringify({hello: 'world'});
-  return resData
-}
 function writeTime (request) {
   var resData = {};
   resData.status = 200;
   resData.data = new Date().toString();
-  return resData
+  return resData;
 }
 
 function greetName (request, name) {
   var resData = {};
   resData.status = 200;
-  resData.data = 'Hello ' + name;
-  return resData
+  resData.data = 'Hello ' + name + '!';
+  return resData;
+}
+
+function writeJSON (request, name) {
+  var resData = {};
+  resData.status = 200;
+  resData.contentType = 'application/json';
+  resData.data = JSON.stringify({hi: name});
+  return resData;
 }
 
 
@@ -38,23 +37,27 @@ function onRequest(request, response) {
   var resData = {};
   var name = request.url.split('/')[2];
 
-  var queryObject = url.parse(request.url, true);
+  // var queryObject = url.parse(request.url, true);
   // console.log(queryObject);
 
   if(request.method == 'GET' && request.url == '/') {
     resData.status = 200;
     resData.contentType = "text/html";
-    resData.data = fs.createReadStream(__dirname + "/public/index.html");
+    // resData.
+    // response = fs.createReadStream(__dirname + "/public/index.html");
     // .pipe(response);
   }
   if(request.url === '/time' && request.method === 'GET') {
-    console.log('time')
+    console.log('time');
     resData = writeTime(request);
-    console.log(resData);
   }
   if(request.url === '/greet/' + name && request.method === 'GET') {
-    console.log('greet name')
+    console.log('greet' + name);
     resData = greetName(request, name);
+  }
+  if(request.url === '/greet/' + name && request.method === 'POST') {
+    console.log('post greet ' + name);
+    resData = writeJSON(request, name);
   }
 
 
