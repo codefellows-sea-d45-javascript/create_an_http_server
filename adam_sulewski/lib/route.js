@@ -6,7 +6,7 @@ var handle = require(__dirname + '/handle');
 
 exports = module.exports = function(req, res) {
   var pathname = url.parse(req.url).pathname;
-  var filename = pathname.slice(1);
+  var filename = pathname.split('/')[1];
 
   if (pathname === '/') filename = 'index';
 
