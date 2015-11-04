@@ -1,0 +1,15 @@
+{
+  "name": "create_an_http_server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Walter Nicholas",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-http": "^1.0.0"
+  }
+}
