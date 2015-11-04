@@ -20,7 +20,6 @@ if (pathArray[1] === 'greet' && request.method === 'GET') {
   fs.readFile('./public/index.html', function(err, data) {
     if (err) throw err;
     console.log('greet!');
-    //Need an if statement
     response.writeHead(200, {"Content-Type": "text/html"});
     var htmlString = data.toString().replace("{{Name}}", " " + pathArray[2]);
     response.write(htmlString);
