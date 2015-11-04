@@ -1,9 +1,8 @@
-'use strict';
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
-var server = http.createServer(function(request, response) {
+var server = module.exports.server = http.createServer(function(request, response) {
 //Create a path array variable to split the URL into segments
 var pathArray = request.url.split('/');
 
@@ -52,4 +51,3 @@ if (pathArray[1] === 'greet' && request.method === 'POST') {
 server.listen(3000, function(){
   console.log('server is up!');
 });
-

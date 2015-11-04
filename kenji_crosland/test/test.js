@@ -1,8 +1,9 @@
+'use strict';
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
-require(__dirname + '/../server.js');
+require(__dirname + '/../lib/server.js');
 var fs = require('fs');
 
 describe('a GET request to to "/"', function(){
