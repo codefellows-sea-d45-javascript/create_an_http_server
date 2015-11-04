@@ -2,37 +2,24 @@
 
 var fs = require('fs');
 var url = require('url');
-var formidable = require('formidable');
-var form = new formidable.IncomingForm();
+var handle = require(__dirname + '/handle');
 
 exports = module.exports = function(req, res) {
   var pathname = url.parse(req.url).pathname;
-  var patharray = pathname.split('/');
+  var filename = pathname.slice(1);
 
-  if (pathname === '/' && req.method === 'GET') {
-    fs.readFile(__dirname + '/../public/index.html', function(err, data) {
-      if (err) throw err;
+  if (pathname === '/') filename = 'index';
 
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end(data);
+  fs.readdir(__dirname + '/../public', function(err, files) {
+    var routes = files.map(function(file) {
+      return file.split('.').shift();
     });
-  }
 
-  if (pathname === '/time' && req.method === 'GET') {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(new Date().toString());
-  }
+    if (routes.indexOf(filename) === -1) {
+      res.writeHead(404, {'Content-Type': 'text/plain'});
+      res.end('not found');
+    }
 
-  if (patharray.length === 3 && patharray[1] === 'greet' &&
-    req.method === 'GET') {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end('Hello ' + patharray[2] + '!');
-  }
-
-  if (pathname === '/greet' && req.method === 'POST') {
-    form.parse(req, function(error, fields, files) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end('Hello ' + fields.name + '!');
-    });
-  }
+    handle[filename](req, res);
+  });
 };
