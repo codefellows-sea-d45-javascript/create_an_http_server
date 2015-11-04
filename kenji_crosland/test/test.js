@@ -13,8 +13,11 @@ describe('a GET request to to "/"', function(){
         .get('/')
         .end(function(err, res){
           expect(res).to.have.status(200);
+          expect(res.text).to.include('<!DOCTYPE "html">');
+          //expect(res.text).to.equal(this.htmlIndex);
+          console.log(res);
           done();
-        });
+        }.bind(this));
   });
 });
 
