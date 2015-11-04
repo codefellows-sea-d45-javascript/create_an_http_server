@@ -10,8 +10,6 @@ gulp.task('jshint', function(){
   .pipe(jshint.reporter('jshint-stylish'));
 });
 
-
-
 gulp.task('test', ['jshint'], function(){
   gulp.src('test/*test.js')
   .pipe(mocha({reporter: 'nyan'}));

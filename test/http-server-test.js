@@ -11,6 +11,7 @@ describe('this server', function(){
 
   before(function(){
     this.indexFileString = fs.readFileSync(__dirname + '/../public/index.html').toString();
+    this.name = "kenji";
 
   });
 
@@ -28,9 +29,17 @@ describe('this server', function(){
 
   it('should give the current time for requests to /time');
 
+  it('should greet "xxx" someone for requests to /greet/xxx', function(done){
+    chai.request('localhost:3000')
+    .get('/greet/' + this.name)
+    .end(function(err, res){
+      expect(err).to.eql(null);
+      expect(res).to.have.status(200);
+       expect(res.text).to.eql('Well hello there, ' + this.name);
+      done();
+    }.bind(this));
 
-
-  it('should greet "xxx" someone for requests to /greet/xxx');
+  });
 
 
   it('should respond do POST requests at /greet');
