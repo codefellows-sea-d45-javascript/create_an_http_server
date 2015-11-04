@@ -24,7 +24,7 @@ describe('greet GET', function() {
     chai.request('localhost:8000')
     .get('/greet')
     .end(function(response) {
-      expect(response).to.equal(200);
+      expect(response).to.have.status(200);
       done();
     });
   });
@@ -39,7 +39,7 @@ describe('greet POST', function() {
       .send({name: 'POST'})
       .end(function(error, response) {
         expect(response).to.equal(200);
-        expect(res.msg).to.equal('Comment allez-vous POST');
+        expect(response.name).to.equal('Comment allez-vous POST');
       });
     });
     done();

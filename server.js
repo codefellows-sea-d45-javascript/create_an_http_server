@@ -21,20 +21,20 @@ var server = http.createServer(function(request, response) {
 
 
   } else if (urlPath[1] === 'time') {
-    response.writeHead(200, {
-      'Content-Type': 'text/plain'
-    });
+      response.writeHead(200, {
+        'Content-Type': 'text/plain'
+      });
 
-    response.write(time + ' ' + localeDate);
-    return response.end();
+      response.write(time + ' ' + localeDate);
+      return response.end();
 
   } else if (urlPath[1] === 'greet' && request.method === 'GET') {
 
-    response.writeHead(200, {
-      'Content-Type': 'text/plain'
-    });
-    response.write('Comment allez-vous ' + urlPath[2] + '!');
-    return response.end();
+      response.writeHead(200, {
+        'Content-Type': 'text/plain'
+      });
+      response.write('Comment allez-vous ' + urlPath[2] + '!');
+      return response.end();
 
   }
     if (request.method === 'POST') {
