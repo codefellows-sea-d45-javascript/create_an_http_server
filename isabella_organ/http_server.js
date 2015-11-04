@@ -5,19 +5,20 @@ var url = require('url');
 // var date = ;
 
 
-var server = http.createServer(function(req, res) {
+var server = http.createServer(function(req, res, err) {
 
 	var resData = {};
 
-	if (req.url === './public/index.html' && req.method === 'GET') {
+	console.log(req.url);
+	if (req.url === '/public/index.html' && req.method === 'GET') {
 		fs.readfile('./public/index.html', function(err, data) {
 			if (err) return console.log(err);
 		});
 		res.writeHead(200, {
 			'Content-Type': 'text/html'
 		});
-		response.write('./public/index.html').toString();
-		response.end();
+		res.write('./public/index.html').toString();
+		res.end();
 	}
 
 	if (req.url === '/time' && req.method === 'GET') {
@@ -26,8 +27,8 @@ var server = http.createServer(function(req, res) {
 		res.writeHead(200, {
 			'Content-Type': 'text/plain'
 		});
-		response.write(time + ' ' + date).toString();
-		response.end();
+		res.write('Date.now()');
+		res.end();
 	
 
 	if (req.url === '/greet' && req.method === 'GET') {
@@ -37,14 +38,14 @@ var server = http.createServer(function(req, res) {
 			'Content-Type': 'text/plain'
 		});
 
-	response.write('hello' + ' ' + name).toString();
-		response.end();
+	res.write('hello' + 'Fred');
+		res.end();
 	
 
 	res.writeHead(resData.status || 404, {
 		'Content-Type': resData.contentType || 'text/plain'
 	});
-	res.Write(resData.data || 'not found');
+	res.write(resData.data || 'not found');
 	res.end();
 	});
 
