@@ -1,5 +1,5 @@
 function SayHello() {
-  return {greeting: 'hello!'};
+  return {greeting: 'hello stranger!'};
 }
 
 module.exports = SayHello;
