@@ -5,7 +5,7 @@ var router = require(__dirname + "/lib/router");
 var requestHandlers = require(__dirname + "/lib/requestHandlers");
 
 var handle = {};
-var hande = {};
+
 handle["/"] = requestHandlers.index;
 handle["/index"] = requestHandlers.index;
 handle["/server"] = requestHandlers.serverTime;
