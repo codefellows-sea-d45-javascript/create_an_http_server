@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple HTTP Server with POST and GET Functionality</title>
+</head>
+<body>
+  <main>
+    <h1>Welcom to Dan's HTTP Server Test</h1>
+    <p>I have implemented several features. Simply enter the code below to access them:</p>
+    <ul>
+      <li>Get the server time by running a GET request and appending "/server" to the end of the url</li>
+      <li>Post a name to the server to have that name greeted. To do this, simply POST a JSON string
+        of the format '{"name": "XXX"}' to the url of "/greet" The example below uses superagent
+          and superagent-cli from the command line to post:
+      <pre>
+      superagent localhost:3000/greet post '{"name": "XXX"}'
+      </pre>
+      </li>
+      <li>
+        Get a greeting of the last name Posted to the server. If ther hasn't been any names
+        posted to the server, then the name will default to "john". To see the name that will
+        be greeted, run a GET request to "/greet/name".
+      </li>
+    </ul>
+  </main>
+  <footer>
+
+  </footer>
+</body>
+</html>
