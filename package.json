@@ -1,0 +1,28 @@
+{
+  "name": "create_an_http_server",
+  "version": "1.0.0",
+  "description": "http vanilla server",
+  "main": "http_server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picklekitch/create_an_http_server.git"
+  },
+  "author": "Will Kitchell (william.kitchell@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/picklekitch/create_an_http_server/issues"
+  },
+  "homepage": "https://github.com/picklekitch/create_an_http_server#readme",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3"
+  }
+}
