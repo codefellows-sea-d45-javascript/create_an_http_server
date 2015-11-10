@@ -11,28 +11,27 @@ var server = http.createServer(function(request, response) {
   var urlPath = request.url.split('/');
   var url = request.url;
 
+  function resWriteHead(status, contentType) {
+    response.writeHead(status, {
+    'Content-Type': contentType
+    });
+  };
+
   if (url === '/') {
     var htmlData = fs.readFileSync('./public/index.html').toString();
-    response.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
+    resWriteHead(200, 'text/html');
     response.write(htmlData);
     return response.end();
 
-
   } else if (urlPath[1] === 'time') {
-      response.writeHead(200, {
-        'Content-Type': 'text/plain'
-      });
+      resWriteHead(200, 'text/plain');
 
       response.write(time + ' ' + localeDate);
       return response.end();
 
   } else if (urlPath[1] === 'greet' && request.method === 'GET') {
 
-      response.writeHead(200, {
-        'Content-Type': 'text/plain'
-      });
+      resWriteHead(200, 'text/plain');
       response.write('Comment allez-vous ' + urlPath[2] + '!');
       return response.end();
 
@@ -42,18 +41,14 @@ var server = http.createServer(function(request, response) {
     request.on('data', function(err, data) {
       var parseData = JSON.parse(data);
 
-      response.writeHead(200, {
-        'Content-Type': 'text/plain'
-      });
+      resWriteHead(200, 'text/plain');
       response.write(JSON.stringify({name: 'Comment allez-vous ' + parseData.name}));
       return response.end();
     });
 
     } else {
 
-      response.writeHead(404, {
-        'Content-Type': 'text/plain'
-      });
+      resWriteHead(404, 'text/plain');
 
       response.write('Sorry, page not found');
       return response.end();
