@@ -1,0 +1,26 @@
+{
+  "name": "john_tucker_miller",
+  "version": "0.0.0",
+  "description": "a simple http server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "john tucker miller",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~2.3.3",
+    "chai": "~3.4.1",
+    "chai-http": "~1.0.0",
+    "q": "~1.4.1",
+    "gulp": "~3.9.0",
+    "jshint": "~2.9.1-rc1",
+    "gulp-jshint": "~2.0.0",
+    "gulp-mocha": "~2.2.0"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.1"
+  }
+}
