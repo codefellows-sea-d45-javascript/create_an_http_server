@@ -2,10 +2,9 @@ var chai = require('chai');
 var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var expect = chai.expect;
-var fs = require('fs');
-var server = require(__dirname + '/../server');
-
-describe('get request to /time: ', function() {
+require(__dirname + '/../server');
+var server = 'localhost:3000';
+describe('get request to /time', function() {
 
   it('should respond with a date', function(done) {
     chai.request(server)
@@ -28,7 +27,7 @@ describe('requests to /greet', function(done) {
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.text).to.eql('yo whats up testname');
+        expect(res.text).to.eql('yo watz good testname');
         done();
       });
   });
@@ -39,7 +38,7 @@ describe('requests to /greet', function(done) {
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
-      expect(res.text).to.eql('yo whats up johnny');
+      expect(res.text).to.eql('Why hello, my esteemed colleage johnny');
       done();
     });
   });
