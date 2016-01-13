@@ -1,0 +1,29 @@
+{
+  "name": "vanilla-server",
+  "version": "0.1.0",
+  "description": "A simple http server",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mskalandunas/create_an_http_server.git"
+  },
+  "author": "Mike Skalandunas <mskalandunas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mskalandunas/create_an_http_server/issues"
+  },
+  "homepage": "https://github.com/mskalandunas/create_an_http_server#readme",
+  "dependencies": {
+    "chai": "^3.4.0",
+    "chai-http": "^1.0.0",
+    "superagent-cli": "^2.0.0",
+    "mocha": "^2.3.3"
+  }
+}
