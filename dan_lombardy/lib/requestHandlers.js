@@ -1,15 +1,16 @@
 "use strict";
 
+
 var querystring = require('querystring');
 var fs = require('fs');
 
-var postedNames = {name: ["billy", "john"]};
+var postedNames = {name: ["billy", "john", "ev"]};
 
 function index(response){
   var resData = {};
   resData.status = 200;
-  resData.contentType = "text.html";
   resData.data = fs.readFileSync(__dirname + '/../public/index.html').toString();
+  response.setHeader("Content-Type", "text/html");
   response.write(resData.data);
   console.log("Index written to stream");
   response.end();
@@ -19,7 +20,7 @@ function index(response){
 function name(response){
   var resData = {};
   resData.status = 200;
-  resData.contentType = "application/json";
+  response.setHeader("Content-Type", "text/plain");
   resData.data = JSON.stringify(postedNames.name[postedNames.name.length-1]);
   response.write("hello " + resData.data);
   console.log("Name and greeting written to stream");
@@ -30,7 +31,7 @@ function name(response){
 
 function greetPost(response, request){
 
-  var resData = "Thanks for posting your name as" + request.data;
+  var message;
 
   request.on("data", function(data){
     var reqData = JSON.parse(data.toString());
@@ -38,18 +39,22 @@ function greetPost(response, request){
       postedNames.name.push(reqData.name);
       console.log("Name sent from client and posted to postedNames object")
     }else{
-      reqData = "Not a string";
-      resData = "You did not POST a string, try again!";
+      message = "Not a string";
       console.log("Client tried to post a non-string");
     }
 
-    if(reqData === "Not a string"){
-      response.write(resData);
+    if(message === "Not a string"){
       console.log("Error written to response for bad POST from Client");
+      response.setHeader("Content-Type", "text/plain");
+      message.status(405);
+      response.write(message);
       response.end();
       console.log("Client sent error for bad POST from client");
     }else{
       console.log("Name written to stream");
+      response.setHeader("Content-Type", "text/plain");
+      message = "You have posted your name";
+      response.write(message);
       response.end();
       console.log("Name sent to client");
     }
@@ -67,10 +72,8 @@ function serverTime(response){
   var min = time.getMinutes();
   var sec = time.getSeconds();
 
-
-
   resData.status = 200;
-  resData.contentType = "application/json";
+  response.setHeader("Content-Type", "text/plain");
   response.write("The time in hour, minutes, seconds "+ hour + ":" + min + ":" + sec + ". For the miliseconds since 1970, you have " + Date.now());
   console.log("Writing server time");
   response.end();

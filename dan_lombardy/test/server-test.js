@@ -5,40 +5,71 @@ var expect = chai.expect;
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var fs = require('fs');
+var router =require(__dirname + '/../lib/router');
+require(__dirname + '/../index');
 
-require(__dirname + '/../server');
-
-
-
-
-
-
-
-
-/*
---take a request of any kind (router)
-    --route that requst to the appropriate handler
-      ---/timeout GET
-      ---/greet/name GET
-      --/greet POST
-
---do something with a request of any kind (requestHandler)
-    route us to each file type that is returned due to the
-    request (including the 404)
-    --The server should respond to a request to /time that will send back the
-      current time of the server.
-    --It should also respond to a get request to /greet/name where name is
-    any single word string. It should send back a string that greets that name.
-    --It should also have a separate post request to /greet that takes the name in JSON format.
-
---entry point (index) to ignite process
-
---have an actual server tht runs (server.js).
-    server takes in the request and response
-
-----There should be tests using chaiHTTP for both routes, as well as a gulpfile/package.json
-
---ou should have an html page that describes the routes implemented by the api available
- at the root of the server (for a bonus point auto populate the routes list, for another bonus point also style the html page)
+/*before('running', function(){
+  this.indexFileString = fs.readFileSync(__dirname + '/../public/index.html').toString();
+});
 */
-describe('')
+
+describe('a server that returns the right routes', function(){
+  before(function() {
+      this.indexFileString = fs.readFileSync(__dirname + '/../public/index.html').toString();
+    });
+
+    it('a call to "/" should return an html page', function(done){
+      chai.request('localhost:3000')
+      .get('/')
+      .end(function(err, res){
+        expect(res).to.have.status(200);
+        expect(res).to.have.header('content-type');
+        expect(res).to.be.html;
+        expect(res.text).to.eql(this.indexFileString);
+        done();
+      }.bind(this));
+
+    });
+
+    it('a call to /greet will return plain text', function(done){
+      chai.request('localhost:3000')
+      .post('/greet')
+      .send({name: "spike"})
+      .end(function(err, res){
+        expect(res).to.have.status(200);
+        expect(res).to.have.header('content-type');
+        expect(res).to.be.text;
+        expect(res.text).to.eql("You have posted your name");
+        done();
+      }.bind(this));
+    });
+
+    it('a call to /greet/name will return plain text', function(done){
+      chai.request('localhost:3000')
+      .get('/greet/name')
+      .end(function(err, res){
+        expect(res).to.have.status(200);
+        expect(res).to.have.header('content-type');
+        expect(res).to.be.text;
+        expect(res.text.slice(0,5)).to.eql("hello");
+        done();
+      }.bind(this));
+    });
+
+    it('a call to /server will return plain text', function(done){
+      chai.request('localhost:3000')
+      .get('/server')
+      .end(function(err, res){
+        expect(res).to.have.status(200);
+        expect(res).to.have.header('content-type');
+        expect(res).to.be.text;
+        expect(res.text.slice(0,3)).to.eql("The");
+        done();
+      }.bind(this));
+    });
+
+
+
+
+
+});
