@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
@@ -28,13 +28,10 @@ gulp.task('jshint:app', function() {
 	.pipe(jshint.reporter('default'));
 });
 
-gulp.task('mocha', function () {
+gulp.task('mocha', function() {
 	return gulp.src('test/*.js')
-	.pipe(mocha({reporter: 'nyan'}));
+	.pipe(mocha({ reporter: 'nyan' }));
 });
 
 gulp.task('jshint', ['jshint:test', 'jshint:app']);
 gulp.task('default', ['jshint', 'mocha']);
-
-
-
