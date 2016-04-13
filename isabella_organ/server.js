@@ -20,19 +20,23 @@ var server = http.createServer(function(req, res, err) {
 
 		if (req.url === '/time' && req.method === 'GET') {
 			if (err) return console.log(err);
+
 			res.writeHead(200, {
 				'Content-Type': 'text/plain'
 			});
 			resData.data = 'Time is ' + new Date().toString();
 		}
 
+
 		if (req.url === '/greet' && req.method === 'GET') {
 				if (err) return console.log(err);
+
 			res.writeHead(200, {
 				'Content-Type': 'text/plain'
 			});
 			resData.data = 'hello';
 		}
+
 
 		res.writeHead(resData.status || 404, {
 			'Content-Type': resData.contentType || 'text/plain'
@@ -40,6 +44,7 @@ var server = http.createServer(function(req, res, err) {
 		res.write(resData.data || 'not found');
 		res.end();
 	}
+
 });
 	server.listen(3000, function() {
 		console.log('server up');
